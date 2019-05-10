@@ -7,7 +7,7 @@ Imports 3D points from an Intel Realsense Depth Camera into Rhino Grasshopper.
 - numpy
 - scipy
 
-## Author
+## Original Author
 
 Ilmar Hurkxkens <<hurkxkens@arch.ethz.ch>> [@ilmihur](https://github.com/ilmihur/)
 
@@ -25,6 +25,7 @@ Once you have Anaconda installed, open `Anaconda Prompt` as administrator. First
     
 Now install `COMPAS` and the `pyrealsense2` libraries to interface with the Intel Realsense Depth Camera (note: numpy and scipy will be automatically installed as well): 
 
+    $ conda config --add channels conda-forge 
     $ conda install COMPAS
     $ pip install pyrealsense2
     
@@ -35,10 +36,35 @@ Clone the depthscanner repository from github to your local drive, and install t
     
 To verify your setup, start Python from the command line and run the following (when nothing happens the installation is successful):
 
+verify compas is correctly installed:
+
     $ python
-    
     >>> import compas
+    >>> import compas_rhino
+    >>> import compas_ghpython
+    >>> print compas.__version__
+    
+write down the number returned
+    
+verify the other dependencies:
+
     >>> import pyrealsense2
     >>> import depthscanner
+    
+Verify that rhino has the same compas version as the virtual environnement.
+In Rhino, start the Python editor and in a blank script paste:
+
+    >>>import compas
+    >>> print compas.__version__
+    
+The returned value should be the same as previously in the command prompt.
+
+In Grasshopper, open a new ghcomponent and do the same:
+
+    >>>import compas
+    >>> print compas.__version__
+
+The returned value should also be the same as previously in the command prompt.
+
 
 Now fetch the grasshopper file and scan away :)
